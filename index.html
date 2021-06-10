@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #magazine {
+            width: 90vw;
+            height: 90vh;
+            margin: 40px auto 0 auto;
+        }
+
+        #magazine .turn-page {
+            background-color: #ccc;
+        }
+
+        div.flip-control {
+            width: 99.2vw;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 50%;
+        }
+
+        div.flip-control a {
+            font-size: 1.2em;
+            display: inline-block;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+        }
+
+        #prev {
+            margin: 0 auto 0 0;
+        }
+
+        #next {
+            margin: 0 0 0 auto;
+
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        #page006 {
+            content: url("img/LayoutBook-AllLayouts-singles_00006.jpg");
+
+        }
+
+        @media(max-width: 1300px){
+                #magazine {
+                width: 88vw;
+                height: 90vh;
+                }
+        }
+        
+        @media(max-width: 1000px){
+                #magazine {
+                width: 88vw;
+                height: 70vh;
+                }
+        }
+
+          @media(max-width: 900px){
+                #magazine {
+                width: 80vw;
+                height: 70vh;
+                }
+        }
+
+        @media(max-width: 800px){
+                #magazine {
+                width: 70vw;
+                height: 70vh;
+                }
+         }
+        @media(max-width: 576px){
+                #magazine {
+                width: 60vw;
+                height: 70vh;
+                }
+                
+        div.flip-control {
+            width: 95vw; 
+            margin: 0 auto; 
+            top: 60%;
+        }
+         }
+        @media(max-width: 500px){
+                #magazine {
+                width: 79vw;
+                height: 60vh;
+                } 
+         }
+        @media(max-width: 400px){
+                #magazine {
+                /* width: 70vw; */
+                height: 50vh;
+                }
+
+         }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body
+    style="background-image: url('data:image/jpeg;base64,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');overflow: hidden;">
+    <div id="magazine"> 
+
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00001.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00002.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00003.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00004.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00005.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00006.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00007.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00008.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00009.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00010.jpg" alt=""> </div>
+ 
+
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00011.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00012.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00013.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00014.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00015.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00016.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00017.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00018.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00019.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00020.jpg" alt=""> </div>
+
+
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00021.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00022.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00023.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00024.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00025.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00026.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00027.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00028.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00029.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00030.jpg" alt=""> </div>
+
+
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00031.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00032.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00033.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00034.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00035.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00036.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00037.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00038.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00039.jpg" alt=""> </div>
+        <div style=" background-size: cover; background-color: white;"><img loading="lazy"
+                src="img/LayoutBook-AllLayouts-singles_00040.jpg" alt=""> </div>
+
+
+ <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00041.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00042.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00043.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00044.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00045.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00046.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00047.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00048.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00049.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00050.jpg" alt=""> </div>
+  
+
+
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00051.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00052.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00053.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00054.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00055.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00056.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00057.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00058.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00059.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00060.jpg" alt=""> </div>
+  
+
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00061.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00062.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00063.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00064.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00065.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00066.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00067.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00068.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00069.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00070.jpg" alt=""> </div>
+  
+
+ <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00071.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00072.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00073.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00074.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00075.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00076.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00077.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00078.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00079.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00080.jpg" alt=""> </div>
+  
+
+ <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00081.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00082.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00083.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00084.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00085.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00086.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00087.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00088.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00089.jpg" alt=""> </div>
+  <div style=" background-size: cover; background-color: white;"><img loading="lazy" src="img/LayoutBook-AllLayouts-singles_00090.jpg" alt=""> </div>
+  
+
+    </div>
+
+    <div class="flip-control" style="font-size:1.75em;">
+        <a href="#" id="prev"> <i class="fas fa-arrow-circle-left"></i> </a>
+        <a href="#" id="next"> <i class="fas fa-arrow-circle-right"></i> </a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="script.js"></script>
+    <script>
+        var oTurn = $('#magazine').turn({ gradients: true, acceleration: true });
+
+        $("#prev").click(function (e) {
+            e.preventDefault();
+            oTurn.turn("previous");
+        });
+
+        $("#next").click(function (e) {
+            e.preventDefault();
+            oTurn.turn("next");
+        });
+        
+        $(window).bind('orientationchange', function (event) {
+        location.reload(true);
+         });
+    </script>
+</body>
+
+</html>
